@@ -17,7 +17,7 @@
 				back('url不能为空');
 			}
 			$id=isset($_GET['id']) ? $_GET['id']:0;
-		$sql="UPDATE nav set nav_name='{$_POST['nav_name']}',nav_url='{$_POST['nav_url']}' WHERE id={$id}";
+		$sql="UPDATE nav set nav_name='{$_POST['nav_name']}',nav_url='{$_POST['nav_url']}',nav_order={$_POST['nav_order']}  WHERE id={$id}";
 		$result=mysql_query($sql);
 		if($result!==false){
 			jump('修改成功','Admin/nav.php',3);
@@ -54,11 +54,11 @@
   <form class="form" action="" method="post">
     <input type="hidden" name="id" value="1">
     <label for="txtname">菜单名称：</label>
-    <input type="text" name="nav_name" value="首页" /><br>
+    <input type="text" name="nav_name" value="<?php echo $info['nav_name'];?>" /><br>
     <label for="txtpswd">菜单地址：</label>
-    <textarea name="nav_url">/Home/index.php</textarea><br>
+    <textarea name="nav_url"><?php echo $info['nav_url'];?></textarea><br>
     <label for="txtpswd">菜单排序：</label>
-    <input type="text" name="nav_order" value="1" />
+    <input type="text" name="nav_order" value="<?php echo $info['nav_order'];?>" />
     <div class="btn">
       <input type="reset" />
       <input type="submit" value="修改" />
